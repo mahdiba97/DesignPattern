@@ -1,7 +1,7 @@
-import coffe_shop.Beverage
-import coffe_shop.DarkRoast
-import coffe_shop.Whip
-import fast_food.*
+import decorator.coffe_shop.Beverage
+import decorator.coffe_shop.DarkRoast
+import decorator.coffe_shop.Whip
+import decorator.fast_food.*
 
 fun main() {
 //    val mallardDuck = MallardDuck()

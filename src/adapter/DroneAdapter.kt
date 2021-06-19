@@ -1,8 +1,8 @@
 package adapter
 
-import duckSimulator.Duck
-import duckSimulator.FlyBehavior
-import duckSimulator.QuackBehavior
+import strategy.duckSimulator.Duck
+import strategy.duckSimulator.FlyBehavior
+import strategy.duckSimulator.QuackBehavior
 
 class DroneAdapter(val drone: Drone):Duck(
         object : FlyBehavior {
