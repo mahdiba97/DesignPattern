@@ -1,7 +1,6 @@
-import decorator.coffe_shop.Beverage
-import decorator.coffe_shop.DarkRoast
-import decorator.coffe_shop.Whip
-import decorator.fast_food.*
+import iterator.Cafe
+import iterator.DinerMenu
+import iterator.PancakeHouseMenu
 
 fun main() {
 //    val mallardDuck = MallardDuck()
@@ -35,16 +34,22 @@ fun main() {
 //    duck.performFly()
 //    duck.performQuack()
 
-    var beverage: Beverage = DarkRoast()
-    beverage = Whip(beverage)
-    beverage = Whip(beverage)
-    println(beverage.descriptions() + "\n$${beverage.cost()}")
-    println()
-    var pizza: Pizza = ThickCrustPizza()
-    pizza = Olive(pizza)
-    pizza = Cheese(pizza)
-    pizza = Peppers(pizza)
-    println(pizza.descriptions() + "\n$${pizza.cost()}")
+//    var beverage: Beverage = DarkRoast()
+//    beverage = Whip(beverage)
+//    beverage = Whip(beverage)
+//    println(beverage.descriptions() + "\n$${beverage.cost()}")
+//    println()
+//    var pizza: Pizza = ThickCrustPizza()
+//    pizza = Olive(pizza)
+//    pizza = Cheese(pizza)
+//    pizza = Peppers(pizza)
+//    println(pizza.descriptions() + "\n$${pizza.cost()}")
 
+    val dinerMenu = DinerMenu().createIterator()
+    val pancakeHouseMenu = PancakeHouseMenu().createIterator()
+    var cafe = Cafe(dinerMenu)
+    cafe.printMenu()
+    cafe = Cafe(pancakeHouseMenu)
+    cafe.printMenu()
 }
 
