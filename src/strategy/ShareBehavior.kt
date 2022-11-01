@@ -1,4 +1,4 @@
-package strategy.phoneCameraApp
+package strategy
 
 interface ShareBehavior {
     fun share()
