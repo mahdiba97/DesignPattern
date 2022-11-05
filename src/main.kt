@@ -1,3 +1,7 @@
+import adapter.DroneAdapter
+import adapter.Duck
+import adapter.MallardDuck
+import adapter.SupperDrone
 import strategy.BasicCameraApp
 import strategy.CameraPlusApp
 import strategy.ShareByEmail
@@ -13,6 +17,18 @@ fun main() {
     basicCameraApp.edit()
     cameraPlus.performShare()
     basicCameraApp.performShare()
-    println("--------Strategy--------")
+    println("--------Adapter--------")
+    val supperDrone = SupperDrone()
+    val droneAdapter = DroneAdapter(supperDrone)
+
+    val mallardDuck = MallardDuck()
+    setAdapter(mallardDuck)
+    setAdapter(droneAdapter)
+}
+
+
+fun setAdapter(adapter: Duck) {
+    adapter.quack()
+    adapter.fly()
 }
 
