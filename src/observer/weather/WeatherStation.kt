@@ -1,25 +1,44 @@
 package observer.weather
 
-class WeatherStation() : Subject {
-    var observers: MutableList<Observer> = mutableListOf()
+import observer.weather.LocalWeather.*
+
+class WeatherStation : Subject {
+    private var observers: MutableList<Observer> = mutableListOf()
     private var temperature: Int = 0
     private var windSpeed: Double = 0.0
     private var humidity: Int = 0
-    override fun registerObserver(o: Observer) {
-        observers.add(o)
+    override fun observe(observer: Observer) {
+        observers.add(observer)
     }
 
-    fun setValue(windSpeed: Double, humidity: Int, temperature: Int) {
+    override fun removeObserver(observer: Observer) {
+        observers.remove(observer)
+    }
+
+    fun setWindSpeed(windSpeed: Double) {
         this.windSpeed = windSpeed
+        notifyObserver(WIND_SPEED)
+    }
+
+    fun setHumidity(humidity: Int) {
         this.humidity = humidity
+        notifyObserver(HUMIDITY)
+    }
+
+    fun setTemperature(temperature: Int) {
         this.temperature = temperature
-        notifyObserver()
+        notifyObserver(TEMPERATURE)
     }
 
 
-    override fun notifyObserver() {
+    override fun notifyObserver(type: LocalWeather) {
+        val newValue = when (type) {
+            WIND_SPEED -> Pair(type, windSpeed)
+            HUMIDITY -> Pair(type, humidity.toDouble())
+            TEMPERATURE -> Pair(type, temperature.toDouble())
+        }
         for (observe in observers) {
-            observe.update(windSpeed, humidity, temperature)
+            observe.update(newValue)
         }
     }
 }

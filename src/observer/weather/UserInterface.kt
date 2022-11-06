@@ -1,21 +1,22 @@
 package observer.weather
 
 class UserInterface(
-        var weatherStation: WeatherStation
+    weatherStation: WeatherStation
 ) : Observer {
     init {
-        weatherStation.registerObserver(this)
+        weatherStation.observe(this)
     }
-    private val any: MutableList<Any?> = mutableListOf()
-    override fun update(windSpeed: Double, humidity: Int, temperature: Int) {
-        any.add(windSpeed)
-        any.add(humidity)
-        any.add(temperature)
+
+    private var weatherData: Pair<LocalWeather, Double>? = null
+
+    override fun update(value: Pair<LocalWeather, Double>) {
+        weatherData = value
         display()
     }
 
     private fun display() {
-        println("This message is from userInterface")
-        println("Wind: ${any[0]} km/h \nHumidity: ${any[1]}% \nTemperature: ${any[2]} C")
+        weatherData?.let {
+            println("Hello I'm UserInterface! I get the new data...${it.first.title} : ${it.second}")
+        }
     }
 }

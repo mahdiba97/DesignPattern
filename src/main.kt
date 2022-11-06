@@ -2,6 +2,10 @@ import adapter.DroneAdapter
 import adapter.Duck
 import adapter.MallardDuck
 import adapter.SupperDrone
+import observer.weather.Alert
+import observer.weather.Logger
+import observer.weather.UserInterface
+import observer.weather.WeatherStation
 import strategy.BasicCameraApp
 import strategy.CameraPlusApp
 import strategy.ShareByEmail
@@ -17,13 +21,27 @@ fun main() {
     basicCameraApp.edit()
     cameraPlus.performShare()
     basicCameraApp.performShare()
+
     println("--------Adapter--------")
     val supperDrone = SupperDrone()
     val droneAdapter = DroneAdapter(supperDrone)
-
     val mallardDuck = MallardDuck()
     setAdapter(mallardDuck)
     setAdapter(droneAdapter)
+
+    println("--------Observer--------")
+    val subject = WeatherStation()
+    val observer1 = Logger(subject)
+    val observer2 = UserInterface(subject)
+    val observer3 = Alert { newValue ->
+        println("Hello I'm Alert! ${newValue.first.title} : ${newValue.second}")
+    }
+    subject.observe(observer3)
+    subject.setHumidity(37)
+    subject.removeObserver(observer1)
+    subject.setTemperature(18)
+    subject.removeObserver(observer2)
+    subject.setWindSpeed(20.4)
 }
 
 

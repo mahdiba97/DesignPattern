@@ -1,22 +1,19 @@
 package observer.weather
 
-class Logger(
-    weatherStation: WeatherStation
+class Alert(
+    val value: (Pair<LocalWeather, Double>) -> Unit
 ) : Observer {
-    init {
-        weatherStation.observe(this)
-    }
 
     private var weatherData: Pair<LocalWeather, Double>? = null
 
     override fun update(value: Pair<LocalWeather, Double>) {
         weatherData = value
-        log()
+        alert()
     }
 
-    private fun log() {
+     fun alert() {
         weatherData?.let {
-            println("Hello I'm Logger! I get the new data...${it.first.title} : ${it.second}")
+            value(it)
         }
     }
 }

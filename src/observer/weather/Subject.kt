@@ -1,6 +1,7 @@
 package observer.weather
 
 interface Subject {
-    fun registerObserver(o:Observer)
-    fun notifyObserver()
+    fun observe(observer: Observer)
+    fun removeObserver(observer: Observer)
+    fun notifyObserver(type:LocalWeather)
 }
