@@ -1,6 +1,7 @@
 package decorator.coffe_shop
 
 abstract class Beverage {
-    abstract fun descriptions():String
+    var description = "Unknown Beverage"
+    open fun getDescriptions() = description
     abstract fun cost():Double
 }

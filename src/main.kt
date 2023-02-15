@@ -2,6 +2,10 @@ import adapter.DroneAdapter
 import adapter.Duck
 import adapter.MallardDuck
 import adapter.SupperDrone
+import decorator.coffe_shop.Beverage
+import decorator.coffe_shop.beverages.DarkRoast
+import decorator.coffe_shop.condiments.Mocha
+import decorator.coffe_shop.condiments.Whip
 import observer.weather.Alert
 import observer.weather.Logger
 import observer.weather.UserInterface
@@ -42,6 +46,14 @@ fun main() {
     subject.setTemperature(18)
     subject.removeObserver(observer2)
     subject.setWindSpeed(20.4)
+
+    println("--------Decorator--------")
+    var beverage:Beverage = DarkRoast()
+    beverage = Mocha(beverage)
+    beverage = Mocha(beverage)
+    beverage = Whip(beverage)
+    println(beverage.getDescriptions() + " $" + beverage.cost())
+
 }
 
 
