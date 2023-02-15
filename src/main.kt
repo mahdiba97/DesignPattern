@@ -6,6 +6,11 @@ import decorator.coffe_shop.Beverage
 import decorator.coffe_shop.beverages.DarkRoast
 import decorator.coffe_shop.condiments.Mocha
 import decorator.coffe_shop.condiments.Whip
+import decorator.fast_food.Pizza
+import decorator.fast_food.pizzas.ThinCrustPizza
+import decorator.fast_food.toppings.Cheese
+import decorator.fast_food.toppings.Olive
+import decorator.fast_food.toppings.Peppers
 import observer.weather.Alert
 import observer.weather.Logger
 import observer.weather.UserInterface
@@ -48,12 +53,16 @@ fun main() {
     subject.setWindSpeed(20.4)
 
     println("--------Decorator--------")
-    var beverage:Beverage = DarkRoast()
+    var beverage: Beverage = DarkRoast()
     beverage = Mocha(beverage)
     beverage = Mocha(beverage)
     beverage = Whip(beverage)
     println(beverage.getDescriptions() + " $" + beverage.cost())
-
+    var pizza: Pizza = ThinCrustPizza()
+    pizza = Cheese(pizza)
+    pizza = Olive(pizza)
+    pizza = Peppers(pizza)
+    println(pizza.getDescriptions() + " $" + pizza.cost())
 }
 
 
