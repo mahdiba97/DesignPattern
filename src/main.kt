@@ -11,6 +11,9 @@ import decorator.fast_food.pizzas.ThinCrustPizza
 import decorator.fast_food.toppings.Cheese
 import decorator.fast_food.toppings.Olive
 import decorator.fast_food.toppings.Peppers
+import factory.pizza_store.ChicagoStylePizzaStore
+import factory.pizza_store.NYStylePizzaStore
+import factory.pizza_type.PizzaType
 import observer.weather.Alert
 import observer.weather.Logger
 import observer.weather.UserInterface
@@ -63,6 +66,14 @@ fun main() {
     pizza = Olive(pizza)
     pizza = Peppers(pizza)
     println(pizza.getDescriptions() + " $" + pizza.cost())
+
+    println("--------Factory--------")
+    val nyStore = NYStylePizzaStore()
+    nyStore.orderPizza(PizzaType.PEPPERONI)
+    nyStore.orderPizza(PizzaType.CHEESE)
+    val chicagoStore = ChicagoStylePizzaStore()
+    chicagoStore.orderPizza(PizzaType.VEGGIE)
+    chicagoStore.orderPizza(PizzaType.CLAM)
 }
 
 
